@@ -96,22 +96,27 @@
 
     <section class="max-w-6xl mx-auto">
       <h2 class="text-center font-bold mt-20">Choose Your Trees</h2>
-      <div class="container grid grid-cols-12 gap-7 mt-10">
-        <div class="col-span-2">
-          <ul id="categories-container" class="grid grid-cols gap-2">
+      <div class="container grid grid-cols-1 md:grid-cols-12 gap-7 mt-10">
+        <div class="col-span-1 md:col-span-2">
+          <ul id="categories-container" class="">
             <h2 class="font-bold">Categories</h2>
-            <h3 class="bg-[#15803d] p-1 rounded-xl">All Tree</h3>
+            <h3 class="p-1 rounded-xl">All Tree</h3>
           </ul>
         </div>
         <div
           id="card-container"
-          class="col-span-8 grid grid-cols-3 mx-auto gap-5"
+          class="col-span-1 md:col-span-8 grid grid-cols-1 md:grid-cols-3 mx-auto gap-5"
         ></div>
-        <div id="cart-container" class="col-span-2 bg-white rounded-lg p-3">
+        <div
+          id="cart-container"
+          class="col-span-1 md:col-span-2 bg-white rounded-lg p-3"
+        >
           <h2 class="font-bold">Your Cart</h2>
 
           <div id="cart-items-container"></div>
-          <div class="font-bold">Total: ৳<span id="cart-total">0</span></div>
+          <div class="font-bold flex justify-between">
+            Total: <span id="cart-total">0</span>
+          </div>
         </div>
       </div>
     </section>
