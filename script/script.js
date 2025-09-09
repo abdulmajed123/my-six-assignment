@@ -42,7 +42,7 @@ const loadCategories = () => {
         cards.forEach((card) => {
           cardContainer.innerHTML += `
           <div class="bg-white max-h-full p-2 rounded-lg shadow-md mx-auto space-y-2 ">
-            <img class="w-60 h-52 rounded-lg mx-auto" src="${card.image}" alt="" />
+            <img class="w-96 h-52 rounded-lg mx-auto" src="${card.image}" alt="" />
             <h2 class="text-xl text-black font-semibold text-center md:text-start ">${card.name}</h2>
             <p class='line-clamp-4 text-center md:text-start'>
               ${card.description}
