@@ -13,7 +13,7 @@ const loadCategories = () => {
       categories.forEach((cat) => {
         categoryContainer.innerHTML += `
         <li id="${cat.id}" class="hover:bg-[#38db74] p-1 rounded-xl
-         hover:text-white">${cat.category_name}</li>`;
+         hover:text-white my-2">${cat.category_name}</li>`;
       });
 
       categoryContainer.addEventListener("click", (e) => {
@@ -49,14 +49,14 @@ const loadCategories = () => {
             </p>
             <div class="flex justify-between items-center">
               <button
-                class="bg-[#DCFCE7] px-2 rounded-2xl font-semibold text-[#15803d] "
+                class="bg-[#DCFCE7] px-2 rounded-2xl font-semibold text-[#15803d]  "
               >
                 ${card.category}
               </button>
               <div class="font-bold"><span class=" text-xl font-bold">৳</span>${card.price}</div>
             </div>
             <button
-              class="btn btn-wide bg-[#15803d] text-lg text-white rounded-3xl block text-center"
+              class="btn w-full bg-[#15803d] text-lg text-white rounded-3xl "
             >
               Add to Cart
             </button>
