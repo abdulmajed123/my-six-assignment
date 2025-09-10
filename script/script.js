@@ -148,27 +148,3 @@ const loadModal = (id) => {
       document.getElementById("my_modal_1").showModal();
     });
 };
-
-// const spinner = document.getElementById("spinner");
-
-// const loadPlantCategory = (id) => {
-//   spinner.classList.remove("hidden"); // show spinner
-
-//   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       const cards = data.plants;
-//       cardContainer.innerHTML = "";
-
-//       cards.forEach((card) => {
-//         cardContainer.innerHTML += `
-//           <div class="bg-white p-2 rounded shadow space-y-2">
-//             <img src="${card.image}" class="w-full h-52 rounded" />
-//             <h2 onclick="loadModal('${card.id}')">${card.name}</h2>
-//             <p>${card.description}</p>
-//           </div>`;
-//       });
-//     })
-//     .catch((err) => console.log(err))
-//     .finally(() => spinner.classList.add("hidden")); // hide spinner
-// };
