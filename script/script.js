@@ -2,6 +2,7 @@ const categoryContainer = document.getElementById("categories-container");
 const cardContainer = document.getElementById("card-container");
 const cartItemsContainer = document.getElementById("cart-items-container");
 const cartTotal = document.getElementById("cart-total");
+const modalContent = document.getElementById("modal-content");
 
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
@@ -41,9 +42,9 @@ const loadCategories = () => {
 
         cards.forEach((card) => {
           cardContainer.innerHTML += `
-          <div class="bg-white max-h-full p-2 rounded-lg shadow-md mx-auto space-y-2 ">
-            <img class="w-96 h-52 rounded-lg mx-auto" src="${card.image}" alt="" />
-            <h2 class="text-xl text-black font-semibold text-center md:text-start ">${card.name}</h2>
+          <div  class="bg-white max-h-full p-2 rounded-lg shadow-md mx-auto space-y-2 ">
+            <img  class="w-full h-52 rounded-lg mx-auto" src="${card.image}" alt="" />
+            <h2 onclick="loadModal('${card.id}')" class="text-xl text-black font-semibold text-center md:text-start ">${card.name}</h2>
             <p class='line-clamp-4 text-center md:text-start'>
               ${card.description}
             </p>
@@ -61,11 +62,12 @@ const loadCategories = () => {
               Add to Cart
             </button>
           </div>
-          
+
           `;
         });
       });
   };
+
   window.onload = () => {
     loadPlantCategory("1");
   };
@@ -112,3 +114,26 @@ const loadCategories = () => {
   });
 };
 loadCategories();
+
+const loadModal = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      const plants = data.plants; // ⚠️ যদি API structure হয় { data: {...} } তাহলে এখানে data.data লাগবে
+
+      document.getElementById("modal-content").innerHTML = `
+          <h3 class="text-lg font-bold">${plants.name}</h3>
+          <img src="${plants.image}" class="w-full h-52 rounded-lg my-3" />
+          <p><span class=" font-bold">Category: </span>${plants.name}</p>
+          <p class=" font-semibold"><span class=" font-bold">Price: </span> ৳ ${plants.price}</p>
+          <p class="py-2"><span class=" font-bold">Description: </span> ${plants.description}</p>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        `;
+
+      document.getElementById("my_modal_1").showModal();
+    });
+};
