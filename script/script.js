@@ -24,6 +24,7 @@ const loadCategories = () => {
         });
 
         if (e.target.localName === "li") {
+          showLoading();
           e.target.classList.add("bg-[#15803d]", "text-white");
           loadPlantCategory(e.target.id);
         }
@@ -42,7 +43,7 @@ const loadCategories = () => {
 
         cards.forEach((card) => {
           cardContainer.innerHTML += `
-          <div  class="bg-white max-h-full p-2 rounded-lg shadow-md mx-auto space-y-2 ">
+          <div  class="bg-white  max-h-[450px] p-2 rounded-lg shadow-md mx-auto space-y-2 ">
             <img  class="w-full h-52 rounded-lg mx-auto" src="${card.image}" alt="" />
             <h2 onclick="loadModal('${card.id}')" class="text-xl text-black font-semibold text-center md:text-start ">${card.name}</h2>
             <p class='line-clamp-4 text-center md:text-start'>
@@ -115,11 +116,21 @@ const loadCategories = () => {
 };
 loadCategories();
 
+const showLoading = () => {
+  cardContainer.innerHTML = `
+         <div
+            class="w-full h-10 bg-red-400 text-center flex justify-center items-center text-2xl ext-black p-3"
+          >
+            Loading....
+          </div>
+  `;
+};
+
 const loadModal = (id) => {
   fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      const plants = data.plants; // ⚠️ যদি API structure হয় { data: {...} } তাহলে এখানে data.data লাগবে
+      const plants = data.plants;
 
       document.getElementById("modal-content").innerHTML = `
           <h3 class="text-lg font-bold">${plants.name}</h3>
@@ -137,3 +148,27 @@ const loadModal = (id) => {
       document.getElementById("my_modal_1").showModal();
     });
 };
+
+// const spinner = document.getElementById("spinner");
+
+// const loadPlantCategory = (id) => {
+//   spinner.classList.remove("hidden"); // show spinner
+
+//   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       const cards = data.plants;
+//       cardContainer.innerHTML = "";
+
+//       cards.forEach((card) => {
+//         cardContainer.innerHTML += `
+//           <div class="bg-white p-2 rounded shadow space-y-2">
+//             <img src="${card.image}" class="w-full h-52 rounded" />
+//             <h2 onclick="loadModal('${card.id}')">${card.name}</h2>
+//             <p>${card.description}</p>
+//           </div>`;
+//       });
+//     })
+//     .catch((err) => console.log(err))
+//     .finally(() => spinner.classList.add("hidden")); // hide spinner
+// };
